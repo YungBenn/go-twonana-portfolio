@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/YungBenn/go-twonana-portfolio/config"
 	_ "github.com/YungBenn/go-twonana-portfolio/docs"
 	"github.com/YungBenn/go-twonana-portfolio/internal/http/routes"
@@ -13,7 +15,6 @@ import (
 	mongoStore "github.com/gofiber/storage/mongodb"
 	"github.com/gofiber/swagger"
 	"go.mongodb.org/mongo-driver/mongo"
-	"log"
 )
 
 // @title							Twonana Portfolio API ujsadnfsnfi
