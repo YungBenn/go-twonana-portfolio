@@ -33,6 +33,11 @@ go.work
 .history
 .ionide
 
+# Sonar Scanner working directories
+.sonar/
+.sonarqube/
+.scannerwork/
+
 .idea
-app.env
+.env
 tmp
