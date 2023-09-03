@@ -2,9 +2,9 @@ package routes
 
 import (
 	"github.com/YungBenn/go-twonana-portfolio/config"
-	"github.com/YungBenn/go-twonana-portfolio/internal/http/middleware"
-	injectorAdmin "github.com/YungBenn/go-twonana-portfolio/internal/injector/admin"
-	injectorNft "github.com/YungBenn/go-twonana-portfolio/internal/injector/nft"
+	"github.com/YungBenn/go-twonana-portfolio/internal/api/middleware"
+	injectorAdmin "github.com/YungBenn/go-twonana-portfolio/internal/di/admin"
+	injectorNft "github.com/YungBenn/go-twonana-portfolio/internal/di/nft"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"go.mongodb.org/mongo-driver/mongo"

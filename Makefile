@@ -4,11 +4,15 @@ run:
 dev:
 	air
 
-swagger:
-	swag init -g ./cmd/api/main.go -o ./docs
-
-dockerup:
+docker-up:
 	docker compose up -d
 
-dockerdown:
+docker-down:
 	docker compose down
+
+sonar:
+	sonar-scanner \
+		-Dsonar.projectKey=twonana-portfolio \
+		-Dsonar.sources=. \
+		-Dsonar.host.url=http://localhost:9000 \
+		-Dsonar.token=sqp_d67de7edfd7b6c8a3d6b38ac2a4cf82ed1a5003e

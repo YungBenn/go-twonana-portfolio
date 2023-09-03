@@ -1,13 +1,13 @@
 //go:build wireinject
 // +build wireinject
 
-package injector
+package di
 
 import (
 	"github.com/YungBenn/go-twonana-portfolio/config"
-	"github.com/YungBenn/go-twonana-portfolio/internal/http/handler"
-	"github.com/YungBenn/go-twonana-portfolio/internal/nft"
+	"github.com/YungBenn/go-twonana-portfolio/internal/api/handler"
 	"github.com/YungBenn/go-twonana-portfolio/internal/infra/cloudinary"
+	"github.com/YungBenn/go-twonana-portfolio/internal/nft"
 	"github.com/google/wire"
 	"go.mongodb.org/mongo-driver/mongo"
 )

@@ -1,13 +1,13 @@
 //go:build wireinject
 // +build wireinject
 
-package injector
+package di
 
 import (
-	"github.com/YungBenn/go-twonana-portfolio/internal/http/handler"
 	"github.com/YungBenn/go-twonana-portfolio/internal/admin"
-	"github.com/google/wire"
+	"github.com/YungBenn/go-twonana-portfolio/internal/api/handler"
 	"github.com/gofiber/fiber/v2/middleware/session"
+	"github.com/google/wire"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

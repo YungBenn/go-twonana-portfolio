@@ -1,0 +1,1773 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Twonana Portfolio Go",
+      "contact": {},
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "variables": {}
+      }
+    ],
+    "paths": {
+      "/api/v1/nft": {
+        "post": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Create NFT",
+          "operationId": "CreateNFT",
+          "parameters": [],
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "encoding": {},
+                "schema": {
+                  "required": [
+                    "title",
+                    "image_url",
+                    "category",
+                    "description",
+                    "software",
+                    "size",
+                    "nft_format",
+                    "marketplace_url",
+                    "countdown_days"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "baby don't hurt me"
+                    },
+                    "image_url": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "category": {
+                      "type": "string",
+                      "example": "dewa"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "blablabla"
+                    },
+                    "software": {
+                      "type": "string",
+                      "example": "Adobe Illustrator"
+                    },
+                    "size": {
+                      "type": "string",
+                      "example": "1000px x 1000px"
+                    },
+                    "nft_format": {
+                      "type": "string",
+                      "example": "png"
+                    },
+                    "marketplace_url": {
+                      "type": "string",
+                      "example": "url"
+                    },
+                    "countdown_days": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2
+                    }
+                  }
+                }
+              }
+            },
+            "required": false
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:04:38 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "405"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/CreateNFT"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 201,
+                            "message": "Created"
+                          },
+                          "data": {
+                            "_id": "64ce2cc6bddba9def8818e37",
+                            "title": "baby don't hurt me",
+                            "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                            "category": "dewa",
+                            "description": "blablabla",
+                            "software": "Adobe Illustrator",
+                            "size": "1000px x 1000px",
+                            "nft_format": "png",
+                            "marketplace_url": "url",
+                            "countdown_days": 2
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 201,
+                      "message": "Created"
+                    },
+                    "data": {
+                      "_id": "64ce2cc6bddba9def8818e37",
+                      "title": "baby don't hurt me",
+                      "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                      "category": "dewa",
+                      "description": "blablabla",
+                      "software": "Adobe Illustrator",
+                      "size": "1000px x 1000px",
+                      "nft_format": "png",
+                      "marketplace_url": "url",
+                      "countdown_days": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        },
+        "get": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Get List NFT",
+          "operationId": "GetListNFT",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:04:55 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "1104"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/GetListNFT"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": [
+                            {
+                              "_id": "64c8d83b0d878f31dc1467e4",
+                              "title": "ganjar",
+                              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                              "category": "PDIP",
+                              "description": "blablabla",
+                              "software": "Adobe Illustrator",
+                              "size": "1000px x 1000px",
+                              "nft_format": "png",
+                              "marketplace_url": "url",
+                              "countdown_days": 2
+                            },
+                            {
+                              "_id": "64c8d9840d878f31dc1467e5",
+                              "title": "baby don't hurt me",
+                              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884484/twonana%20nft/818447a9-84e9-4045-8e75-11cc2b72af30.png",
+                              "category": "dewa",
+                              "description": "blablabla",
+                              "software": "Adobe Illustrator",
+                              "size": "1000px x 1000px",
+                              "nft_format": "png",
+                              "marketplace_url": "url",
+                              "countdown_days": 2
+                            },
+                            {
+                              "_id": "64ce2cc6bddba9def8818e37",
+                              "title": "baby don't hurt me",
+                              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                              "category": "dewa",
+                              "description": "blablabla",
+                              "software": "Adobe Illustrator",
+                              "size": "1000px x 1000px",
+                              "nft_format": "png",
+                              "marketplace_url": "url",
+                              "countdown_days": 2
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": [
+                      {
+                        "_id": "64c8d83b0d878f31dc1467e4",
+                        "title": "ganjar",
+                        "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                        "category": "PDIP",
+                        "description": "blablabla",
+                        "software": "Adobe Illustrator",
+                        "size": "1000px x 1000px",
+                        "nft_format": "png",
+                        "marketplace_url": "url",
+                        "countdown_days": 2
+                      },
+                      {
+                        "_id": "64c8d9840d878f31dc1467e5",
+                        "title": "baby don't hurt me",
+                        "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884484/twonana%20nft/818447a9-84e9-4045-8e75-11cc2b72af30.png",
+                        "category": "dewa",
+                        "description": "blablabla",
+                        "software": "Adobe Illustrator",
+                        "size": "1000px x 1000px",
+                        "nft_format": "png",
+                        "marketplace_url": "url",
+                        "countdown_days": 2
+                      },
+                      {
+                        "_id": "64ce2cc6bddba9def8818e37",
+                        "title": "baby don't hurt me",
+                        "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                        "category": "dewa",
+                        "description": "blablabla",
+                        "software": "Adobe Illustrator",
+                        "size": "1000px x 1000px",
+                        "nft_format": "png",
+                        "marketplace_url": "url",
+                        "countdown_days": 2
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/nft/category": {
+        "get": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Get List NFT Category",
+          "operationId": "GetListNFTCategory",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:05:02 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "59"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/GetListNFTCategory"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": [
+                            "PDIP",
+                            "dewa"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": [
+                      "PDIP",
+                      "dewa"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/nft/64c8d83b0d878f31dc1467e4": {
+        "get": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Get NFT By id",
+          "operationId": "GetNFTByid",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:05:24 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "388"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/GetNFTByid"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": {
+                            "_id": "64c8d83b0d878f31dc1467e4",
+                            "title": "ganjar",
+                            "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                            "category": "PDIP",
+                            "description": "blablabla",
+                            "software": "Adobe Illustrator",
+                            "size": "1000px x 1000px",
+                            "nft_format": "png",
+                            "marketplace_url": "url",
+                            "countdown_days": 2
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": {
+                      "_id": "64c8d83b0d878f31dc1467e4",
+                      "title": "ganjar",
+                      "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                      "category": "PDIP",
+                      "description": "blablabla",
+                      "software": "Adobe Illustrator",
+                      "size": "1000px x 1000px",
+                      "nft_format": "png",
+                      "marketplace_url": "url",
+                      "countdown_days": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        },
+        "put": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Update NFT",
+          "operationId": "UpdateNFT",
+          "parameters": [],
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "encoding": {},
+                "schema": {
+                  "required": [
+                    "title",
+                    "image_url",
+                    "category",
+                    "description",
+                    "software",
+                    "size",
+                    "nft_format",
+                    "marketplace_url",
+                    "countdown_days"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "ganjar"
+                    },
+                    "image_url": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "category": {
+                      "type": "string",
+                      "example": "PDIP"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "blablabla"
+                    },
+                    "software": {
+                      "type": "string",
+                      "example": "Adobe Illustrator"
+                    },
+                    "size": {
+                      "type": "string",
+                      "example": "1000px x 1000px"
+                    },
+                    "nft_format": {
+                      "type": "string",
+                      "example": "png"
+                    },
+                    "marketplace_url": {
+                      "type": "string",
+                      "example": "url"
+                    },
+                    "countdown_days": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2
+                    }
+                  }
+                }
+              }
+            },
+            "required": false
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:05:32 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "388"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/UpdateNFT"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": {
+                            "_id": "64c8d83b0d878f31dc1467e4",
+                            "title": "ganjar",
+                            "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                            "category": "PDIP",
+                            "description": "blablabla",
+                            "software": "Adobe Illustrator",
+                            "size": "1000px x 1000px",
+                            "nft_format": "png",
+                            "marketplace_url": "url",
+                            "countdown_days": 2
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": {
+                      "_id": "64c8d83b0d878f31dc1467e4",
+                      "title": "ganjar",
+                      "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                      "category": "PDIP",
+                      "description": "blablabla",
+                      "software": "Adobe Illustrator",
+                      "size": "1000px x 1000px",
+                      "nft_format": "png",
+                      "marketplace_url": "url",
+                      "countdown_days": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/nft/64ce2cc6bddba9def8818e37": {
+        "delete": {
+          "tags": [
+            "Nft"
+          ],
+          "summary": "Delete NFT",
+          "operationId": "DeleteNFT",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:05:50 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "53"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/DeleteNFT"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": "Deleted"
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": "Deleted"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/auth/register": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Register",
+          "operationId": "Register",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/RegisterRequest"
+                    },
+                    {
+                      "example": {
+                        "username": "twonana",
+                        "password": "twonana"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "username": "twonana",
+                  "password": "twonana"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:03:55 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "178"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Register"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 201,
+                            "message": "Created"
+                          },
+                          "data": {
+                            "_id": "64ce2c9cbddba9def8818e36",
+                            "username": "twonana",
+                            "password": "$2a$10$Z..PJ8EJQRvPeWlYMlAcmultq2SJGYml4FxBx1Cw1vP0Nusu7ku.y"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 201,
+                      "message": "Created"
+                    },
+                    "data": {
+                      "_id": "64ce2c9cbddba9def8818e36",
+                      "username": "twonana",
+                      "password": "$2a$10$Z..PJ8EJQRvPeWlYMlAcmultq2SJGYml4FxBx1Cw1vP0Nusu7ku.y"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "operationId": "Login",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/LoginRequest"
+                    },
+                    {
+                      "example": {
+                        "username": "adminruben",
+                        "password": "adminruben"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "username": "adminruben",
+                  "password": "adminruben"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:03:36 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "59"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                },
+                "Set-Cookie": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "session_id=d190a577-351a-4bf3-9e5f-b37e2c48cbab; max-age=7200; path=/; SameSite=Lax"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Login"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": "Login Success"
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": "Login Success"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/auth/logout": {
+        "delete": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Logout",
+          "operationId": "Logout",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 11:04:08 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "60"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                },
+                "Set-Cookie": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "session_id=; expires=Sat, 05 Aug 2023 11:03:08 GMT; path=/; SameSite=Lax"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Logout"
+                      },
+                      {
+                        "example": {
+                          "meta": {
+                            "code": 200,
+                            "message": "OK"
+                          },
+                          "data": "Logout Success"
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "meta": {
+                      "code": 200,
+                      "message": "OK"
+                    },
+                    "data": "Logout Success"
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/": {
+        "get": {
+          "tags": [
+            "Misc"
+          ],
+          "summary": "Health Check",
+          "operationId": "HealthCheck",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "Date": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Sat, 05 Aug 2023 09:22:59 GMT"
+                    }
+                  }
+                },
+                "Content-Length": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "3"
+                    }
+                  }
+                },
+                "Vary": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "Origin"
+                    }
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "content": {
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      },
+                      "example": "*"
+                    }
+                  }
+                }
+              },
+              "content": {
+                "text/plain; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "OK!"
+                  },
+                  "example": "OK!"
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "CreateNFT": {
+          "title": "CreateNFT",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "$ref": "#/components/schemas/Data"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 201,
+              "message": "Created"
+            },
+            "data": {
+              "_id": "64ce2cc6bddba9def8818e37",
+              "title": "baby don't hurt me",
+              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+              "category": "dewa",
+              "description": "blablabla",
+              "software": "Adobe Illustrator",
+              "size": "1000px x 1000px",
+              "nft_format": "png",
+              "marketplace_url": "url",
+              "countdown_days": 2
+            }
+          }
+        },
+        "Meta": {
+          "title": "Meta",
+          "required": [
+            "code",
+            "message"
+          ],
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "code": 201,
+            "message": "Created"
+          }
+        },
+        "Data": {
+          "title": "Data",
+          "required": [
+            "_id",
+            "title",
+            "image_url",
+            "category",
+            "description",
+            "software",
+            "size",
+            "nft_format",
+            "marketplace_url",
+            "countdown_days"
+          ],
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "image_url": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "software": {
+              "type": "string"
+            },
+            "size": {
+              "type": "string"
+            },
+            "nft_format": {
+              "type": "string"
+            },
+            "marketplace_url": {
+              "type": "string"
+            },
+            "countdown_days": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "example": {
+            "_id": "64ce2cc6bddba9def8818e37",
+            "title": "baby don't hurt me",
+            "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+            "category": "dewa",
+            "description": "blablabla",
+            "software": "Adobe Illustrator",
+            "size": "1000px x 1000px",
+            "nft_format": "png",
+            "marketplace_url": "url",
+            "countdown_days": 2
+          }
+        },
+        "GetListNFT": {
+          "title": "GetListNFT",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Data"
+              },
+              "description": ""
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": [
+              {
+                "_id": "64c8d83b0d878f31dc1467e4",
+                "title": "ganjar",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                "category": "PDIP",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64c8d9840d878f31dc1467e5",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884484/twonana%20nft/818447a9-84e9-4045-8e75-11cc2b72af30.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64ce2cc6bddba9def8818e37",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              }
+            ]
+          }
+        },
+        "GetListNFTCategory": {
+          "title": "GetListNFTCategory",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": ""
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": [
+              "PDIP",
+              "dewa"
+            ]
+          }
+        },
+        "GetAllNFTByCategory": {
+          "title": "GetAllNFTByCategory",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Data"
+              },
+              "description": ""
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": [
+              {
+                "_id": "64c8d83b0d878f31dc1467e4",
+                "title": "ganjar",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                "category": "PDIP",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64c8d9840d878f31dc1467e5",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884484/twonana%20nft/818447a9-84e9-4045-8e75-11cc2b72af30.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64ce2cc6bddba9def8818e37",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              }
+            ]
+          }
+        },
+        "GetNFTByTitle": {
+          "title": "GetNFTByTitle",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Data"
+              },
+              "description": ""
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": [
+              {
+                "_id": "64c8d83b0d878f31dc1467e4",
+                "title": "ganjar",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+                "category": "PDIP",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64c8d9840d878f31dc1467e5",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884484/twonana%20nft/818447a9-84e9-4045-8e75-11cc2b72af30.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              },
+              {
+                "_id": "64ce2cc6bddba9def8818e37",
+                "title": "baby don't hurt me",
+                "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1691233478/twonana%20nft/1e426798-0300-4bea-b2d3-58ade364fdac.png",
+                "category": "dewa",
+                "description": "blablabla",
+                "software": "Adobe Illustrator",
+                "size": "1000px x 1000px",
+                "nft_format": "png",
+                "marketplace_url": "url",
+                "countdown_days": 2
+              }
+            ]
+          }
+        },
+        "GetNFTByid": {
+          "title": "GetNFTByid",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "$ref": "#/components/schemas/Data"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": {
+              "_id": "64c8d83b0d878f31dc1467e4",
+              "title": "ganjar",
+              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+              "category": "PDIP",
+              "description": "blablabla",
+              "software": "Adobe Illustrator",
+              "size": "1000px x 1000px",
+              "nft_format": "png",
+              "marketplace_url": "url",
+              "countdown_days": 2
+            }
+          }
+        },
+        "UpdateNFT": {
+          "title": "UpdateNFT",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "$ref": "#/components/schemas/Data"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": {
+              "_id": "64c8d83b0d878f31dc1467e4",
+              "title": "ganjar",
+              "image_url": "https://res.cloudinary.com/dypwg6tc4/image/upload/v1690884155/twonana%20nft/3e05368d-c8e1-410e-bc60-28c2a96d944f.jpg",
+              "category": "PDIP",
+              "description": "blablabla",
+              "software": "Adobe Illustrator",
+              "size": "1000px x 1000px",
+              "nft_format": "png",
+              "marketplace_url": "url",
+              "countdown_days": 2
+            }
+          }
+        },
+        "DeleteNFT": {
+          "title": "DeleteNFT",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": "Deleted"
+          }
+        },
+        "RegisterRequest": {
+          "title": "RegisterRequest",
+          "required": [
+            "username",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "username": "twonana",
+            "password": "twonana"
+          }
+        },
+        "Register": {
+          "title": "Register",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "$ref": "#/components/schemas/Data6"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 201,
+              "message": "Created"
+            },
+            "data": {
+              "_id": "64ce2c9cbddba9def8818e36",
+              "username": "twonana",
+              "password": "$2a$10$Z..PJ8EJQRvPeWlYMlAcmultq2SJGYml4FxBx1Cw1vP0Nusu7ku.y"
+            }
+          }
+        },
+        "Data6": {
+          "title": "Data6",
+          "required": [
+            "_id",
+            "username",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "_id": "64ce2c9cbddba9def8818e36",
+            "username": "twonana",
+            "password": "$2a$10$Z..PJ8EJQRvPeWlYMlAcmultq2SJGYml4FxBx1Cw1vP0Nusu7ku.y"
+          }
+        },
+        "LoginRequest": {
+          "title": "LoginRequest",
+          "required": [
+            "username",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "username": "adminruben",
+            "password": "adminruben"
+          }
+        },
+        "Login": {
+          "title": "Login",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": "Login Success"
+          }
+        },
+        "Logout": {
+          "title": "Logout",
+          "required": [
+            "meta",
+            "data"
+          ],
+          "type": "object",
+          "properties": {
+            "meta": {
+              "$ref": "#/components/schemas/Meta"
+            },
+            "data": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            },
+            "data": "Logout Success"
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Nft"
+      },
+      {
+        "name": "Auth"
+      },
+      {
+        "name": "Misc",
+        "description": ""
+      }
+    ]
+  }

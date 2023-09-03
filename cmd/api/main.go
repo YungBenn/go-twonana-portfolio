@@ -4,8 +4,7 @@ import (
 	"log"
 
 	"github.com/YungBenn/go-twonana-portfolio/config"
-	_ "github.com/YungBenn/go-twonana-portfolio/docs"
-	"github.com/YungBenn/go-twonana-portfolio/internal/http/routes"
+	"github.com/YungBenn/go-twonana-portfolio/internal/api/routes"
 	"github.com/YungBenn/go-twonana-portfolio/internal/mongodb"
 	"github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
@@ -13,19 +12,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	mongoStore "github.com/gofiber/storage/mongodb"
-	"github.com/gofiber/swagger"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// @title							Twonana Portfolio API ujsadnfsnfi
-// @version							1.0
-// @description						Twonana Portfolio Website documentation with auth session, written by Ruben.
-// @securityDefinitions.apikey		ApiKeyAuth
-// @in								header
-// @name							Authorization
-// @description						Token in Bearer format to authenticate the user
-// @host							localhost:3000
-// @BasePath						/api/v1
 func main() {
 	env, err := config.LoadConfig()
 	if err != nil {
@@ -50,13 +39,12 @@ func main() {
 	routes.SetupNFTRoutes(app, db, env, store)
 	routes.SetupAuthRoutes(app, db, store)
 
-	port := env.PORT
-	err = app.Listen(":" + port)
+	err = app.Listen(":" + env.PORT)
 	if err != nil {
 		log.Fatalf("Error starting server: %s", err)
 	}
 
-	log.Printf("Server is running on port %s", port)
+	log.Printf("Server is running on port %s", env.PORT)
 }
 
 func connectMongo(env config.EnvVars) (*mongo.Database, error) {
@@ -76,10 +64,11 @@ func setupApp() *fiber.App {
 	app.Use(cors.New())
 	app.Use(logger.New())
 
+	app.Static("/docs", "./docs/swagger")
+
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.Status(200).SendString("OK!")
 	})
-	app.Get("/docs/*", swagger.HandlerDefault)
 
 	return app
 }

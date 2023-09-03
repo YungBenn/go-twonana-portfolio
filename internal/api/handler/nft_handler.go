@@ -16,14 +16,6 @@ func NewNftHandler(s nft.NftService) *NftHandler {
 	return &NftHandler{s}
 }
 
-//	CreateNft		godoc
-//	@Summary		Create a new Nft
-//	@Tags			Nfts
-//	@Accept 		multipart/form-data
-//	@Produce 		json
-//	@Param 			ImageUrl formData nft.CreateNftRequest true "Add Nft"
-//	@Success 		200 {object} nft.Nft
-//	@Router 		/api/v1/nft [post]
 func (h *NftHandler) CreateNft(c *fiber.Ctx) error {
 	var input nft.CreateNftRequest
 	if err := c.BodyParser(&input); err != nil {
@@ -56,13 +48,6 @@ func (h *NftHandler) CreateNft(c *fiber.Ctx) error {
 	return nil
 }
 
-//	GetAllNft		godoc
-//	@Summary		List nfts
-//	@Tags			Nfts
-//	@Accept 		json
-//	@Produce 		json
-//	@Success 		200 {object} nft.Nft
-//	@Router 		/api/v1/nft [get]
 func (h *NftHandler) GetAllNft(c *fiber.Ctx) error {
 	ctx := c.Context()
 	data, err := h.s.FindAllNft(ctx)
@@ -83,14 +68,6 @@ func (h *NftHandler) GetAllNft(c *fiber.Ctx) error {
 	return nil
 }
 
-//	GetOneNft		godoc
-//	@Summary		Detail nft
-//	@Tags			Nfts
-//	@Accept 		json
-//	@Produce 		json
-//	@Param			id path int true "Nft ID" Format(string)
-//	@Success 		200 {object} nft.Nft
-//	@Router 		/api/v1/nft/{id} [get]
 func (h *NftHandler) GetOneNft(c *fiber.Ctx) error {
 	id := c.Params("id")
 
@@ -113,15 +90,6 @@ func (h *NftHandler) GetOneNft(c *fiber.Ctx) error {
 	return nil
 }
 
-//	UpdateNft		godoc
-//	@Summary		Update Nft
-//	@Tags			Nfts
-//	@Accept 		multipart/form-data
-//	@Produce 		json
-//	@Param			id path int true "Nft ID" Format(string)
-//	@Param 			nft body nft.UpdateNftRequest true "Update Nft"
-//	@Success 		200 {object} nft.Nft
-//	@Router 		/api/v1/nft/{id} [put]
 func (h *NftHandler) UpdateNft(c *fiber.Ctx) error {
 	id := c.Params("id")
 
@@ -156,14 +124,6 @@ func (h *NftHandler) UpdateNft(c *fiber.Ctx) error {
 	return nil
 }
 
-//	DeleteNft		godoc
-//	@Summary		Update Nft
-//	@Tags			Nfts
-//	@Accept 		json
-//	@Produce 		json
-//	@Param			id path int true "Nft ID" Format(string)
-//	@Success 		200 {object} response.ApiResponse
-//	@Router 		/api/v1/nft/{id} [delete]
 func (h *NftHandler) DeleteNft(c *fiber.Ctx) error {
 	id := c.Params("id")
 
