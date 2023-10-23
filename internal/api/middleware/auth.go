@@ -13,19 +13,17 @@ func IsAuth(store *session.Store) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		sess, err := store.Get(c)
 		if err != nil {
-			return c.Status(http.StatusInternalServerError).JSON(response.Response(
+			return c.Status(http.StatusInternalServerError).JSON(response.NewError(
 				http.StatusInternalServerError, 
-				http.StatusText(http.StatusInternalServerError), 
-				err,
+				err, 
 			))
 		}
 	
 		username := sess.Get("username")
 		if username == nil {
-			return c.Status(http.StatusUnauthorized).JSON(response.Response(
+			return c.Status(http.StatusUnauthorized).JSON(response.NewMessage(
 				http.StatusUnauthorized, 
-				http.StatusText(http.StatusUnauthorized), 
-				err,
+				http.StatusText(http.StatusUnauthorized),
 			))
 		}
 

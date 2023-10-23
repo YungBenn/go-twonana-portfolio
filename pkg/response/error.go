@@ -1,11 +1,11 @@
 package response
 
 type Error struct {
-	Code uint
+	Code int
 	Err  error
 }
 
-func NewError(code uint, err error) *Error {
+func NewError(code int, err error) *Error {
 	return &Error{
 		Code: code,
 		Err:  err,

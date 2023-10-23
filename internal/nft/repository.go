@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"github.com/YungBenn/go-twonana-portfolio/pkg/response"
+	"github.com/YungBenn/go-twonana-portfolio/pkg/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,7 +13,7 @@ import (
 
 type NftRepository interface {
 	InsertNft(ctx context.Context, nft Nft) (*Nft, *response.Error)
-	FindAllNft(ctx context.Context) ([]Nft, *response.Error)
+	FindAllNft(ctx context.Context, limit int, page int) ([]Nft, *response.Error)
 	FindAllCategory(ctx context.Context) ([]string, *response.Error)
 	FindOneNft(ctx context.Context, id string) (*Nft, *response.Error)
 	FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error)
@@ -23,6 +24,7 @@ type NftRepository interface {
 
 type nftRepository struct {
 	db *mongo.Database
+	coll *mongo.Collection
 }
 
 // FindAllCategory implements NftRepository.
@@ -82,11 +84,14 @@ func (repo *nftRepository) FindNftByTitle(ctx context.Context, title string) (*N
 }
 
 func NewNftRepository(db *mongo.Database) NftRepository {
-	return &nftRepository{db}
+	return &nftRepository{
+		db:   db,
+		coll: db.Collection("nfts"),
+	}
 }
 
 func (repo *nftRepository) InsertNft(ctx context.Context, nft Nft) (*Nft, *response.Error) {
-	coll := repo.db.Collection("nfts")
+	coll := repo.coll
 
 	res, err := coll.InsertOne(ctx, nft)
 	if err != nil {
@@ -114,10 +119,10 @@ func (repo *nftRepository) InsertNft(ctx context.Context, nft Nft) (*Nft, *respo
 	return newNFT, nil
 }
 
-func (repo *nftRepository) FindAllNft(ctx context.Context) ([]Nft, *response.Error) {
-	coll := repo.db.Collection("nfts")
+func (repo *nftRepository) FindAllNft(ctx context.Context, limit int, page int) ([]Nft, *response.Error) {
+	coll := repo.coll
 
-	res, err := coll.Find(ctx, bson.M{})
+	res, err := coll.Find(ctx, bson.M{}, utils.NewMongoPaginate(limit, page).GetPaginatedOpts())
 	if err != nil {
 		return nil, response.NewError(500, err)
 	}
@@ -131,7 +136,7 @@ func (repo *nftRepository) FindAllNft(ctx context.Context) ([]Nft, *response.Err
 }
 
 func (repo *nftRepository) FindOneNft(ctx context.Context, id string) (*Nft, *response.Error) {
-	coll := repo.db.Collection("nfts")
+	coll := repo.coll
 
 	objectId, _ := primitive.ObjectIDFromHex(id)
 
@@ -147,7 +152,7 @@ func (repo *nftRepository) FindOneNft(ctx context.Context, id string) (*Nft, *re
 }
 
 func (repo *nftRepository) UpdateNft(ctx context.Context, id string, nft Nft) (*Nft, *response.Error) {
-	coll := repo.db.Collection("nfts")
+	coll := repo.coll
 
 	objectId, _ := primitive.ObjectIDFromHex(id)
 
@@ -168,7 +173,7 @@ func (repo *nftRepository) UpdateNft(ctx context.Context, id string, nft Nft) (*
 }
 
 func (repo *nftRepository) DeleteNft(ctx context.Context, id string) *response.Error {
-	coll := repo.db.Collection("nfts")
+	coll := repo.coll
 
 	objectId, _ := primitive.ObjectIDFromHex(id)
 	filter := bson.M{"_id": objectId}

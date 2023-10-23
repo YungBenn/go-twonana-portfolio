@@ -9,7 +9,7 @@ import (
 
 type NftService interface {
 	CreateNft(ctx context.Context, dto CreateNftRequest) (*Nft, *response.Error)
-	FindAllNft(ctx context.Context) ([]Nft, *response.Error)
+	FindAllNft(ctx context.Context, limit int, page int) ([]Nft, *response.Error)
 	FindAllCategory(ctx context.Context) ([]string, *response.Error)
 	FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error)
 	FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error)
@@ -48,7 +48,7 @@ func (s *nftService) CreateNft(ctx context.Context, dto CreateNftRequest) (*Nft,
 		Size:           dto.Size,
 		NftFormat:      dto.NftFormat,
 		MarketplaceUrl: dto.MarketplaceUrl,
-		CountdownDays:  dto.CountdownDays,
+		CountdownDays:  dto.CountdownDays * 86400000,
 	}
 
 	if dto.ImageUrl != nil {
@@ -85,8 +85,8 @@ func (s *nftService) DeleteNft(ctx context.Context, id string) *response.Error {
 }
 
 // FindAllNft implements NftService.
-func (s *nftService) FindAllNft(ctx context.Context) ([]Nft, *response.Error) {
-	return s.repo.FindAllNft(ctx)
+func (s *nftService) FindAllNft(ctx context.Context, limit int, page int) ([]Nft, *response.Error) {
+	return s.repo.FindAllNft(ctx, limit, page)
 }
 
 // FindOneNft implements NftService.

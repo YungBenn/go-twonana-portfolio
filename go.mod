@@ -3,7 +3,7 @@ module github.com/YungBenn/go-twonana-portfolio
 go 1.20
 
 require (
-	github.com/cloudinary/cloudinary-go/v2 v2.3.0
+	github.com/cloudinary/cloudinary-go/v2 v2.4.0
 	github.com/gofiber/fiber/v2 v2.48.0
 	github.com/google/uuid v1.3.0
 	github.com/spf13/viper v1.16.0
@@ -27,12 +27,13 @@ require (
 	github.com/go-playground/validator/v10 v10.14.1 // indirect
 	github.com/gofiber/storage/mongodb v1.3.8 // indirect
 	github.com/gofiber/storage/redis/v2 v2.0.3 // indirect
+	github.com/gofiber/storage/redis/v3 v3.0.0-20230905082048-1e3b3f6a5e22 // indirect
 	github.com/gofiber/swagger v0.1.12 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/leodido/go-urn v1.2.4 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/rakyll/statik v0.1.7 // indirect
-	github.com/redis/go-redis/v9 v9.0.5 // indirect
+	github.com/redis/go-redis/v9 v9.1.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 	github.com/swaggo/files/v2 v2.0.0 // indirect

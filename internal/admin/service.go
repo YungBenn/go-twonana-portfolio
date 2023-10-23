@@ -11,10 +11,21 @@ import (
 type AdminService interface {
 	CreateAdmin(ctx context.Context, dto AdminRequest) (*Admin, *response.Error)
 	Login(ctx context.Context, dto AdminRequest) (*Admin, *response.Error)
+	FindAdminByUsername(ctx context.Context, username string) (*Admin, *response.Error)
 }
 
 type adminService struct {
 	repo AdminRepository
+}
+
+// FindAdminByUsername implements AdminService.
+func (s *adminService) FindAdminByUsername(ctx context.Context, username string) (*Admin, *response.Error) {
+	dataAdmin, err := s.repo.FindAdminByUsername(ctx, username)
+	if err != nil {
+		return nil, err
+	}
+
+	return dataAdmin, nil
 }
 
 // Login implements AdminService.

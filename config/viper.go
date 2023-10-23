@@ -14,12 +14,12 @@ type EnvVars struct {
 	CLOUDINARYSECRET    string `mapstructure:"CLOUDINARY_SECRET"`
 	CLOUDINARYCLOUDNAME string `mapstructure:"CLOUDINARY_CLOUDNAME"`
 	CLOUDINARYFOLDER    string `mapstructure:"CLOUDINARY_FOLDER"`
+	REDISHOST           string `mapstructure:"REDIS_HOST"`
+	REDISPORT           string `mapstructure:"REDIS_PORT"`
 }
 
 func LoadConfig() (config EnvVars, err error) {
-	viper.AddConfigPath(".")
-	viper.SetConfigFile(".env")
-
+	viper.SetConfigFile(".env")	
 	viper.AutomaticEnv()
 
 	err = viper.ReadInConfig()

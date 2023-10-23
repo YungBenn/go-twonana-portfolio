@@ -2,25 +2,12 @@ version: '3.7'
 
 services:
 
-  # api:
-  #   container_name: api
-  #   restart: unless-stopped
-  #   build: ./
-  #   ports:
-  #     - ""
-
-  # caddy:
-  #   image: caddy:2.7.4-alpine
-  #   container_name: caddy-service
-  #   restart: unless-stopped
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - $PWD/Caddyfile:/etc/caddy/Caddyfile
-  #     - $PWD/site:/srv
-  #     - caddy_data:/data
-  #     - caddy_config:/config
+  api:
+    container_name: api
+    restart: unless-stopped
+    build: ./
+    ports:
+      - ""
 
   mongo:
     image: mongo
@@ -44,8 +31,5 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
 
 volumes:
-  caddy_data:
-    external: true
-  caddy_config:
   mongo-data:
     driver: local
