@@ -17,7 +17,6 @@ type NftRepository interface {
 	FindAllCategory(ctx context.Context) ([]string, *response.Error)
 	FindOneNft(ctx context.Context, id string) (*Nft, *response.Error)
 	FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error)
-	// FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error)
 	UpdateNft(ctx context.Context, id string, nft Nft) (*Nft, *response.Error)
 	DeleteNft(ctx context.Context, id string) *response.Error
 }

@@ -14,15 +14,15 @@ func SetupNFTRoutes(app *fiber.App, db *mongo.Database, env config.EnvVars, stor
 	nft := injectorNft.InitNft(db, env)
 
 	nftRouter := app.Group("/api/v1/nft")
-	nftRouter.Use(middleware.IsAuth(store))
+	// nftRouter.Use(middleware.IsAuth(store))
 
-	nftRouter.Post("/", nft.CreateNft)
+	nftRouter.Post("/", middleware.IsAuth(store), nft.CreateNft)
 	nftRouter.Get("/", nft.GetAllNft)
 	nftRouter.Get("/category/:category", nft.GetAllNftByCategory)
 	nftRouter.Get("/category", nft.GetAllCategory)
 	nftRouter.Get("/:id", nft.GetOneNft)
-	nftRouter.Put("/:id", nft.UpdateNft)
-	nftRouter.Delete("/:id", nft.DeleteNft)
+	nftRouter.Put("/:id", middleware.IsAuth(store), nft.UpdateNft)
+	nftRouter.Delete("/:id", middleware.IsAuth(store), nft.DeleteNft)
 }
 
 func SetupAuthRoutes(app *fiber.App, db *mongo.Database, store *session.Store) {

@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	// "github.com/gofiber/fiber/v2/middleware/redirect"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	mongoStore "github.com/gofiber/storage/mongodb"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -63,6 +64,13 @@ func setupApp() *fiber.App {
 
 	app.Use(cors.New())
 	app.Use(logger.New())
+
+	// app.Use(redirect.New(redirect.Config{
+	// 	Rules: map[string]string{
+	// 		"/docs": "/docs/",
+	// 	},
+	// 	StatusCode: 301,
+	// }))
 
 	app.Static("/docs", "./docs/swagger")
 
