@@ -12,7 +12,6 @@ type NftService interface {
 	FindAllNft(ctx context.Context, limit int, page int) ([]Nft, *response.Error)
 	FindAllCategory(ctx context.Context) ([]string, *response.Error)
 	FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error)
-	FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error)
 	FindOneNft(ctx context.Context, id string) (*Nft, *response.Error)
 	UpdateNft(ctx context.Context, id string, dto UpdateNftRequest) (*Nft, *response.Error)
 	DeleteNft(ctx context.Context, id string) *response.Error
@@ -26,11 +25,6 @@ type nftService struct {
 // FindNftByCategory implements NftService.
 func (s *nftService) FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error) {
 	return s.repo.FindNftByCategory(ctx, category)
-}
-
-// FindNftByTitle implements NftService.
-func (s *nftService) FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error) {
-	return s.repo.FindNftByTitle(ctx, title)
 }
 
 // FindAllCategory implements NftService.

@@ -17,7 +17,7 @@ type NftRepository interface {
 	FindAllCategory(ctx context.Context) ([]string, *response.Error)
 	FindOneNft(ctx context.Context, id string) (*Nft, *response.Error)
 	FindNftByCategory(ctx context.Context, category string) ([]Nft, *response.Error)
-	FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error)
+	// FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error)
 	UpdateNft(ctx context.Context, id string, nft Nft) (*Nft, *response.Error)
 	DeleteNft(ctx context.Context, id string) *response.Error
 }
@@ -66,21 +66,6 @@ func (repo *nftRepository) FindNftByCategory(ctx context.Context, category strin
 	}
 
 	return nfts, nil
-}
-
-// FindNftByTitle implements NftRepository.
-func (repo *nftRepository) FindNftByTitle(ctx context.Context, title string) (*Nft, *response.Error) {
-	coll := repo.db.Collection("nfts")
-
-	var nft Nft
-	err := coll.FindOne(ctx, bson.M{"title": title}).Decode(&nft)
-	if err != nil {
-		if errors.Is(err, mongo.ErrNoDocuments) {
-			return nil, response.NewError(404, err)
-		}
-	}
-
-	return &nft, nil
 }
 
 func NewNftRepository(db *mongo.Database) NftRepository {

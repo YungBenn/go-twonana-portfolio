@@ -18,8 +18,7 @@ func SetupNFTRoutes(app *fiber.App, db *mongo.Database, env config.EnvVars, stor
 
 	nftRouter.Post("/", nft.CreateNft)
 	nftRouter.Get("/", nft.GetAllNft)
-	nftRouter.Get("/", nft.GetAllNftByCategory)
-	nftRouter.Get("/", nft.GetNftByTitle)
+	nftRouter.Get("/category/:category", nft.GetAllNftByCategory)
 	nftRouter.Get("/category", nft.GetAllCategory)
 	nftRouter.Get("/:id", nft.GetOneNft)
 	nftRouter.Put("/:id", nft.UpdateNft)

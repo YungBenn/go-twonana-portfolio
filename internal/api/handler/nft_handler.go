@@ -170,32 +170,10 @@ func (h *NftHandler) GetAllCategory(c *fiber.Ctx) error {
 }
 
 func (h *NftHandler) GetAllNftByCategory(c *fiber.Ctx) error {
-	category := c.Query("category")
+	category := c.Params("category")
 
 	ctx := c.Context()
 	data, err := h.s.FindNftByCategory(ctx, category)
-	if err != nil {
-		return c.Status(int(err.Code)).JSON(response.NewResponse(
-			int(err.Code),
-			http.StatusText(int(err.Code)),
-			err.Err.Error(),
-		))
-	}
-
-	c.Status(http.StatusOK).JSON(response.NewResponse(
-		http.StatusOK,
-		http.StatusText(http.StatusOK),
-		data,
-	))
-
-	return nil
-}
-
-func (h *NftHandler) GetNftByTitle(c *fiber.Ctx) error {
-	title := c.Query("title")
-
-	ctx := c.Context()
-	data, err := h.s.FindNftByTitle(ctx, title)
 	if err != nil {
 		return c.Status(int(err.Code)).JSON(response.NewResponse(
 			int(err.Code),

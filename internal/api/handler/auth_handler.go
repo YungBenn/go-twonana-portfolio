@@ -77,7 +77,7 @@ func (h *AuthHandler) Login(c *fiber.Ctx) error {
 		))
 	}
 	
-	sess.SetExpiry(2 * time.Hour)
+	sess.SetExpiry(1 * time.Hour)
 	sess.Set("username", data.Username)
 
 	if err := sess.Save(); err != nil {
