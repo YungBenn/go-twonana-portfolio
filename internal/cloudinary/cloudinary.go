@@ -3,7 +3,6 @@ package cloudinary
 import (
 	"context"
 	"errors"
-	"mime/multipart"
 
 	"github.com/YungBenn/go-twonana-portfolio/config"
 	"github.com/YungBenn/go-twonana-portfolio/pkg/response"
@@ -14,7 +13,7 @@ import (
 )
 
 type MediaService interface {
-	Upload(file multipart.FileHeader) (*string, *response.Error)
+	Upload(file string) (*string, *response.Error)
 	Delete(file string) (*string, *response.Error)
 }
 
@@ -45,7 +44,7 @@ func (s *mediaService) Delete(file string) (*string, *response.Error) {
 }
 
 // Upload implements MediaService
-func (s *mediaService) Upload(file multipart.FileHeader) (*string, *response.Error) {
+func (s *mediaService) Upload(file string) (*string, *response.Error) {
 	cld, err := cloudinary.NewFromParams(s.env.CLOUDINARYCLOUDNAME, s.env.CLOUDINARYAPIKEY, s.env.CLOUDINARYSECRET)
 	if err != nil {
 		return nil, response.NewError(500, err)
@@ -53,17 +52,10 @@ func (s *mediaService) Upload(file multipart.FileHeader) (*string, *response.Err
 
 	var ctx = context.Background()
 
-	binary, err := file.Open()
-	if err != nil {
-		return nil, response.NewError(500, err)
-	}
-
-	defer binary.Close()
-
-	if binary != nil {
+	if file != "" {
 		uploadResult, err := cld.Upload.Upload(
 			ctx,
-			binary,
+			file,
 			uploader.UploadParams{
 				PublicID: uuid.New().String(),
 				Folder:   s.env.CLOUDINARYFOLDER,
@@ -77,7 +69,7 @@ func (s *mediaService) Upload(file multipart.FileHeader) (*string, *response.Err
 		return &uploadResult.SecureURL, nil
 	}
 
-	return nil, response.NewError(500, errors.New("cannot read binary file"))
+	return nil, response.NewError(500, errors.New("cannot read base64 file"))
 }
 
 func NewMediaService(env config.EnvVars) MediaService {

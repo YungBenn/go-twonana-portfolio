@@ -45,8 +45,8 @@ func (s *nftService) CreateNft(ctx context.Context, dto CreateNftRequest) (*Nft,
 		CountdownDays:  dto.CountdownDays * 86400000,
 	}
 
-	if dto.ImageUrl != nil {
-		image, err := s.media.Upload(*dto.ImageUrl)
+	if dto.ImageUrl != "" {
+		image, err := s.media.Upload(dto.ImageUrl)
 		if err != nil {
 			return nil, err
 		}
@@ -101,8 +101,8 @@ func (s *nftService) UpdateNft(ctx context.Context, id string, dto UpdateNftRequ
 		CountdownDays:  dto.CountdownDays,
 	}
 
-	if dto.ImageUrl != nil {
-		image, err := s.media.Upload(*dto.ImageUrl)
+	if dto.ImageUrl != "" {
+		image, err := s.media.Upload(dto.ImageUrl)
 		if err != nil {
 			return nil, err
 		}

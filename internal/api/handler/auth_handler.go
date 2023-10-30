@@ -76,18 +76,23 @@ func (h *AuthHandler) Login(c *fiber.Ctx) error {
 			errSess,
 		))
 	}
-	
+
 	sess.SetExpiry(1 * time.Hour)
 	sess.Set("username", data.Username)
 
 	if err := sess.Save(); err != nil {
-        panic(err)
-    }
+		panic(err)
+	}
+
+	userData := admin.LoginResponse{
+		ID:       data.ID.Hex(),
+		Username: data.Username,
+	}
 
 	c.Status(http.StatusOK).JSON(response.NewResponse(
 		http.StatusOK,
-		http.StatusText(http.StatusOK),
 		"Login Success",
+		userData,
 	))
 
 	return nil

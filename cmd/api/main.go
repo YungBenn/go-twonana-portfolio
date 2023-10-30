@@ -86,7 +86,6 @@ func setupSessionStore(env config.EnvVars) *session.Store {
 		ConnectionURI: env.MONGODBURI,
 		Database:      env.MONGODBNAME,
 		Collection:    "sessions",
-		Reset:         false,
 	})
 
 	store := session.New(session.Config{

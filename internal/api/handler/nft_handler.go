@@ -26,9 +26,6 @@ func (h *NftHandler) CreateNft(c *fiber.Ctx) error {
 		))
 	}
 
-	file, _ := c.FormFile("image_url")
-	input.ImageUrl = file
-
 	ctx := c.Context()
 	data, err := h.s.CreateNft(ctx, input)
 	if err != nil {
@@ -104,9 +101,6 @@ func (h *NftHandler) UpdateNft(c *fiber.Ctx) error {
 			err.Error(),
 		))
 	}
-
-	file, _ := c.FormFile("image_url")
-	input.ImageUrl = file
 
 	ctx := c.Context()
 	data, err := h.s.UpdateNft(ctx, id, input)
