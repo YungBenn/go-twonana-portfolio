@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	// "github.com/gofiber/fiber/v2/middleware/redirect"
+	"github.com/gofiber/fiber/v2/middleware/redirect"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	mongoStore "github.com/gofiber/storage/mongodb"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -22,7 +22,7 @@ func main() {
 		log.Fatalf("Error loading configuration: %s", err)
 	}
 
-	db, err := connectMongo(env)
+	db, err := mongodb.ConnectDB(env.MONGODBURI, env.MONGODBNAME)
 	if err != nil {
 		log.Fatalf("Error connecting to MongoDB: %s", err)
 	}
@@ -48,14 +48,6 @@ func main() {
 	log.Printf("Server is running on port %s", env.PORT)
 }
 
-func connectMongo(env config.EnvVars) (*mongo.Database, error) {
-	db, err := mongodb.ConnectDB(env.MONGODBURI, env.MONGODBNAME)
-	if err != nil {
-		return nil, err
-	}
-	return db, nil
-}
-
 func setupApp() *fiber.App {
 	app := fiber.New(fiber.Config{
 		JSONEncoder: json.Marshal,
@@ -64,15 +56,12 @@ func setupApp() *fiber.App {
 
 	app.Use(cors.New())
 	app.Use(logger.New())
-
-	// app.Use(redirect.New(redirect.Config{
-	// 	Rules: map[string]string{
-	// 		"/docs": "/docs/",
-	// 	},
-	// 	StatusCode: 301,
-	// }))
-
 	app.Static("/docs", "./docs/swagger")
+	app.Use(redirect.New(redirect.Config{
+		Rules: map[string]string{
+			"/docs": "/docs/",
+		},
+	}))
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.Status(200).SendString("OK!")

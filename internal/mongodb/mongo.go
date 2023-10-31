@@ -10,7 +10,7 @@ import (
 
 func ConnectDB(uri string, dbname string) (*mongo.Database, error) {
 	if uri == "" {
-		log.Fatal("You must set your 'MONGODB_URI' environmental variable. See\n\t https://www.mongodb.com/docs/drivers/go/current/usage-examples/#environment-variable")
+		log.Fatal("You must set your 'MONGODB_URI' environmental variable.")
 	}
 	
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(uri))
